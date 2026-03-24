@@ -3,10 +3,12 @@ import { fetchGoogleBusinesses, fetchYelpBusinesses, fetchChamberBusinesses, typ
 import { summarizeCompany } from '@/lib/scoring';
 import { aiSummarizeCompany } from '@/lib/openai';
 
+// Helper function to normalize business names
 function normalizedName(name: string) {
   return name.trim().toLowerCase().replace(/[®™]/g, '').replace(/\s+/g, ' ');
 }
 
+// Merge businesses to combine data from different sources
 async function mergeBusinesses(businesses: ProviderBusiness[]) {
   const byName = new Map<string, ProviderBusiness[]>();
 
@@ -22,6 +24,18 @@ async function mergeBusinesses(businesses: ProviderBusiness[]) {
     const first = group[0];
     const fallback = summarizeCompany(first.name, allReviews);
     const summary = await aiSummarizeCompany({ company: first.name, reviews: allReviews, fallback });
+
+    // Remove "Limited Data" if no data is available, or show a custom message
+    const summaryWithMessage = summary || {
+      company: first.name,
+      reliabilityScore: 0,
+      riskLevel: 'very-high',
+      verdict: 'No reviews available.',
+      positives: [],
+      complaints: [],
+      evidenceCount: 0
+    };
+
     merged.push({
       company: first.name,
       sources: group.map(g => ({
@@ -30,7 +44,7 @@ async function mergeBusinesses(businesses: ProviderBusiness[]) {
         reviewCount: g.reviewCount ?? null,
         url: g.url ?? null
       })),
-      summary
+      summary: summaryWithMessage
     });
   }
 
@@ -51,6 +65,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'query and city are required' }, { status: 400 });
     }
 
+    // Fetch data from multiple sources
     const [google, yelp, chamber] = await Promise.all([
       fetchGoogleBusinesses(input),
       fetchYelpBusinesses(input),
