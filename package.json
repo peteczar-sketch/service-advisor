@@ -10,7 +10,9 @@
   "dependencies": {
     "next": "16.0.10",
     "react": "19.0.0",
-    "react-dom": "19.0.0"
+    "react-dom": "19.0.0",
+    "openai": "^4.56.0",
+    "react-autocomplete": "^1.9.1"  // Add this for autocomplete
   },
   "devDependencies": {
     "typescript": "5.7.3",
