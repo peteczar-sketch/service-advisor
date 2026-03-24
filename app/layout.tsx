@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import Autocomplete from 'react-autocomplete';
+import Autocomplete from 'react-autocomplete'; // Importing the autocomplete library
 
 // Helper function to render a progress bar based on the reliability score
 const getRatingBarStyle = (score: number) => ({
@@ -24,10 +24,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
   const services = ['Snow Removal', 'Lawn Care', 'Driveway Cleaning']; // Placeholder for service categories
 
+  // Function to handle changes in the search input
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
   };
 
+  // Fetch data based on the query
   const fetchData = async () => {
     const response = await fetch('/api/analyze', {
       method: 'POST',
@@ -41,6 +43,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     setResults(data.results); // Assuming API response has `results` field
   };
 
+  // Autocomplete configuration for the search input
   useEffect(() => {
     fetchData(); // Fetch data when the component loads
   }, []);
@@ -85,7 +88,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </div>
 
               {/* Display verdict, address, and website */}
-              <p>{result.verdict}</p>
+              <p>{result.summary?.verdict || 'No reviews available'}</p>
               <p>Address: {result.address}</p>
               {result.website && <a href={result.website}>Visit Website</a>}
               {result.phone && <p>Phone: {result.phone}</p>}
