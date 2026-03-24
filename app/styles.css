@@ -1,16 +1,65 @@
-html, body { margin: 0; padding: 0; font-family: Arial, sans-serif; background: #f6f8fb; color: #0f172a; }
-.container { max-width: 960px; margin: 0 auto; padding: 32px 16px; }
-.controls { display: flex; gap: 12px; margin: 18px 0 24px; }
-.controls input { flex: 1; padding: 12px; border-radius: 10px; border: 1px solid #cbd5e1; }
-.controls button { padding: 12px 16px; border: 0; border-radius: 10px; background: #1d4ed8; color: white; cursor: pointer; }
-.card { background: white; border-radius: 18px; padding: 18px; margin-bottom: 18px; box-shadow: 0 8px 24px rgba(15,23,42,.08); }
-.row { display:flex; justify-content:space-between; align-items:center; gap:12px; }
-.badge { padding: 6px 10px; border-radius: 999px; font-size: 12px; font-weight: 700; text-transform: uppercase; }
-.badge.low { background:#dcfce7; color:#166534; }
-.badge.medium { background:#fef3c7; color:#92400e; }
-.badge.high { background:#fee2e2; color:#991b1b; }
-.badge.very-high { background:#fecaca; color:#7f1d1d; }
-.grid { display:grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-.error { color:#b91c1c; }
-ul { padding-left: 18px; }
-@media (max-width: 700px) { .controls, .grid { grid-template-columns: 1fr; display:grid; } }
+/* Styling for the result display */
+.result-container {
+  margin: 20px;
+  padding: 15px;
+  background-color: #f1f1f1;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.score-container {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.score {
+  font-size: 1.5em;
+}
+
+.risk-level {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.sources {
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.details p {
+  font-size: 14px;
+  color: #555;
+}
+
+.confidence-warning {
+  margin-top: 10px;
+  background-color: #fff3cd;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #856404;
+}
+
+a {
+  text-decoration: none;
+  color: #007bff;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
