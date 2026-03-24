@@ -9,13 +9,14 @@ function normalizedName(name: string) {
 
 async function mergeBusinesses(businesses: ProviderBusiness[]) {
   const byName = new Map<string, ProviderBusiness[]>();
+
   for (const b of businesses) {
     const key = normalizedName(b.name);
     if (!byName.has(key)) byName.set(key, []);
     byName.get(key)!.push(b);
   }
 
-  const merged = [];
+  const merged: { company: string, sources: any[], summary: any }[] = [];
   for (const [, group] of byName.entries()) {
     const allReviews = group.flatMap(g => (g.reviews ?? []).map(r => ({ ...r, source: g.source })));
     const first = group[0];
