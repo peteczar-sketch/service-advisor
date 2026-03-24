@@ -1,4 +1,4 @@
-/* Styling for the result display */
+/* styles.css */
 .result-container {
   margin: 20px;
   padding: 15px;
@@ -7,48 +7,17 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.score-container {
-  display: flex;
-  align-items: center;
-  font-size: 18px;
-  font-weight: bold;
-}
-
-.score {
-  font-size: 1.5em;
+.rating {
+  margin-top: 10px;
+  width: 100%;
+  height: 10px;
+  background-color: #e0e0e0;
+  border-radius: 5px;
 }
 
 .risk-level {
   margin-top: 10px;
   font-size: 14px;
-}
-
-.sources {
-  margin-top: 15px;
-  font-size: 14px;
-}
-
-.details p {
-  font-size: 14px;
-  color: #555;
-}
-
-.confidence-warning {
-  margin-top: 10px;
-  background-color: #fff3cd;
-  padding: 10px;
-  border-radius: 8px;
-  font-size: 14px;
-  color: #856404;
-}
-
-a {
-  text-decoration: none;
-  color: #007bff;
-}
-
-a:hover {
-  text-decoration: underline;
 }
 
 button {
